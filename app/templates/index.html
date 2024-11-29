@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html class="theme-light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>DUMPIFY</title>
+        <meta name="description" content="Backup media to hard-disk">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- cdn for css -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+        >
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
+
+        <link rel="stylesheet" href="../static/css/main.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!-- START : navigation -->
+         <nav class="navbar is-white">
+            <div class="container">
+                <div class="navbar-brand">
+                    <span class="navbar-item">
+                        <span class="title">
+                            <span class="micro-text has-text-dark">
+                                <span>DUMPIFY</span>
+                                <span class="has-text-link animate__animated animate__flash animate__infinite">|</span>
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <!-- file count icons -->
+                <div class="navbar-menu">
+                    <div class="navbar-end">
+                        <div class="navbar-item animate__animated animate__fadeInDown">
+                            <div class="buttons pixel-text">
+                                <span class="button is-grey is-rounded">
+                                    <span class="icon-text">
+                                        <span class="icon">
+                                            <i class="fa-solid fa-file-export has-text-link"></i>
+                                        </span>
+                                        <span id="totalFileCount">100</span>
+                                    </span>
+                                </span>
+                                <span class="button is-grey is-rounded">
+                                    <span class="icon-text">
+                                        <span class="icon">
+                                            <i class="fa-solid fa-video has-text-grey"></i>
+                                        </span>
+                                        <span id="videoFileCount">100</span>
+                                    </span>
+                                </span>
+                                <span class="button is-grey is-rounded">
+                                    <span class="icon-text">
+                                        <span class="icon">
+                                            <i class="fa-regular fa-images has-text-grey"></i>
+                                        </span>
+                                        <span id="imageFileCount">100</span>
+                                    </span>
+                                </span>
+                                <!-- START: hard-drive connection lost icon -->
+                                <span class="button is-danger is-rounded is-hidden" id="hddStatusCheck">
+                                    <span class="icon-text">
+                                        <span class="icon animate__animated animate__heartBeat animate__infinite">
+                                            <i class="fa-regular fa-hard-drive"></i>
+                                        </span>
+                                        <span>No Hard-drive</span>
+                                    </span>
+                                </span>
+                                <!-- END: hard drive connectoin lost -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </nav>
+        <!-- END : Navigation -->
+         <div class="container">
+            <div class="columns is-multiline is-8">
+                <div class="column is-6">
+                    <div class="section pixel-text">
+                        <p class="title is-size-1">Ready to back-up <span class="has-text-link">?</span></p>
+                        <p class="sub-title has-text-grey">A program to back-up files to Hard-drive</p>
+                    </div>
+                    <div class="field has-addons" id="backUpActionDiv">
+                        <div class="control is-expanded">
+                            <div class="select is-fullwidth is-rounded is-large">
+                                <select name="mediaType" id="mediaType" class="pixel-text has-text-link">
+                                    <option value="0">Choose media type</option>
+                                    <option value="all">All media</option>
+                                    <option value="image">Image</option>
+                                    <option value="video">Video</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control">
+                            <button class="button is-link is-rounded is-large pixel-text" type="button" id="backUpBtn">Back-up</button>
+                        </div>
+                    </div>
+                    <div class="notification is-link is-link is-hidden" id="backupNotificaton">
+                        <button class="delete" id="backupNotificatonDelete"></button>
+                        <span id="notMsg">
+                            Please choose the type of media file you would like to back-up.
+                        </span>
+                    </div>
+                    <div class="content pixel-text">
+                        <div class="icon-text">
+                            <span class="icon">
+                                <i class="has-text-very-light fa-regular fa-calendar-check"></i>
+                            </span>
+                            <span class="has-text-grey is-size-7 ml-2">
+                                Last backed-up date : 
+                                <span id="last_backup_date" class="">Loading...</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-6 is-hidden" id="dataContentDiv">
+                    <span class="icon-text mt-2 has-text-link" id="backUpLogTitle">
+                        <span class="icon">
+                            <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        </span>
+                        <span class="pixel-text">Bacup process analysis</span>
+                    </span>
+                    <hr>
+                    <div class="content pixel-text" id="fileLogTable">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>File name</th>
+                                    <th>File type</th>
+                                    <th>Size</th>
+                                    <th>Created date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="fileLogTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+         </div>
+         <!-- js cdn link -->
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Micro+5+Charted&family=Pixelify+Sans:wght@400..700&display=swap');
+        </style>
+        <!-- js file imports -->
+         <script src="../static/js/main.js"></script>
+         <script src="../static/js/backup.js"></script>
+    </body>
+</html>
