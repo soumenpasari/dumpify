@@ -36,7 +36,7 @@ New organized file path : /home/user/backup/2024/Nov/sample.mp4
 
 1.  Clone the repository:
     
-        git clone https://github.com/your-repository/media-file-organizer.git
+        git clone https://github.com/soumenpasari/dumpify.git
     cd media-file-organizer
 
    
@@ -95,7 +95,7 @@ Set the following environment variables in a `.env` file or export them directly
 -   **CSS Framework**: [Bulma](https://bulma.io/) (Lightweight, responsive CSS framework).
 -   **Technologies**: HTML5, JavaScript.
 ----------
-## TIMELINE
+## Timeline
 This project is a work in progress for now. Though it's main function is complete i.e. move files in a organized manner to another folder which is mostly considered your hard disk.
 Time allotted to this project for now : ***14 hrs 50 mins.***
 It includes all the process from scratch in designing, creating basic API functionality, handling basic JavaScript functionalities, testing basic functionalities.
